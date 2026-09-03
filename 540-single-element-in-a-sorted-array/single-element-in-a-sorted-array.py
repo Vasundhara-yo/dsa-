@@ -1,19 +1,39 @@
 class Solution:
     def singleNonDuplicate(self, nums: List[int]) -> int:
+        n = len(nums)
 
-        left, right = 0, len(nums) - 1
+        if n == 1:
+            return nums[0]
 
-        while left < right:
-            mid = (left + right) // 2
+        st = 0
+        end = n - 1
 
-            if mid % 2 == 1:
-                mid -= 1
+        while st <= end:
 
-            if nums[mid] == nums[mid + 1]:
-                left = mid + 2
+            mid = (st + end) // 2
+
+            if mid == 0 and nums[0] != nums[1]:
+                return nums[mid]
+
+            if mid == n - 1 and nums[n - 1] != nums[n - 2]:
+                return nums[mid]
+
+            if nums[mid - 1] != nums[mid] and nums[mid] != nums[mid + 1]:
+                return nums[mid]
+
+            if mid % 2 == 0:
+
+                if nums[mid - 1] == nums[mid]:
+                    end = mid - 1
+                else:
+                    st = mid + 1
+
             else:
-                right = mid
 
-        return nums[left]
+                if nums[mid - 1] == nums[mid]:
+                    st = mid + 1
+                else:
+                    end = mid - 1
 
-        
+        return -1
+   
