@@ -37,3 +37,4 @@ class Solution:
             max_area = max(max_area, area)
 
         return max_area
+        
