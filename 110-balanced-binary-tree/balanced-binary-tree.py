@@ -10,19 +10,19 @@ class Solution:
             if node is None:
                 return 0
 
-            lh = solve(node.left)
-            if lh == -1:
+            left = solve(node.left)
+            if left == -1:
                 return -1
 
-            rh = solve(node.right)
-            if rh == -1:
+            right = solve(node.right)
+            if right == -1:
                 return -1
 
-            if abs(lh - rh) > 1:
+            if abs(left - right) > 1:
                 return -1
 
-            return 1 + max(lh, rh)
+            return 1 + max(left, right)
 
         return solve(root) != -1
 
-        
+           
